@@ -3,18 +3,26 @@
 
 #include <memory>
 #include "cocos2d.h"
-#include "base_object.h"
-#include "selector.h"
+#include "helpers.h"
 
 class ChoiceScene : public cocos2d::LayerColor
 {
 public:
     static cocos2d::Scene* createScene();
     virtual bool init();
-    CREATE_FUNC(ChoiceScene)
     void NextSceneButton(Ref* pSender);
+    bool OnTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
+    void OnTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
+    void OnTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
+    template<typename Container, typename Positions>
+    void UpdateObjectsList(Container& container, Positions positions);
+    bool IsSelectionFull();
+
+    CREATE_FUNC(ChoiceScene)
+
 protected:
-    std::shared_ptr<Selector> m_selector;
+    std::vector<helpers::Building*> m_selectedObjects;
+    std::vector<helpers::Building*> m_allObjects;
 };
 
 #endif // CHOICESCENE_H

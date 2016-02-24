@@ -1,4 +1,4 @@
-#include "../Classes/AppDelegate.h"
+#include "../Classes/app.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -9,7 +9,6 @@ USING_NS_CC;
 
 int main(int argc, char **argv)
 {
-    // create the application instance
-    AppDelegate app;
+    App app;
     return Application::getInstance()->run();
 }

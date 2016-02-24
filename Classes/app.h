@@ -3,11 +3,11 @@
 
 #include "cocos2d.h"
 
-class  AppDelegate : private cocos2d::Application
+class  App : private cocos2d::Application
 {
 public:
-    AppDelegate();
-    virtual ~AppDelegate();
+    App();
+    virtual ~App();
     virtual void initGLContextAttrs();
     virtual bool applicationDidFinishLaunching();
     virtual void applicationDidEnterBackground();

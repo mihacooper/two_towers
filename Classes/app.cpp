@@ -1,25 +1,25 @@
-#include "AppDelegate.h"
+#include "app.h"
 #include "select_scene/choice_scene.h"
 #include "game_scene/game_scene.h"
 #include "config.h"
 
 USING_NS_CC;
 
-AppDelegate::AppDelegate() {
+App::App() {
 
 }
 
-AppDelegate::~AppDelegate() 
+App::~App()
 {
 }
 
-void AppDelegate::initGLContextAttrs()
+void App::initGLContextAttrs()
 {
     GLContextAttrs glContextAttrs = {8, 8, 8, 8, 24, 8};
     GLView::setGLContextAttrs(glContextAttrs);
 }
 
-bool AppDelegate::applicationDidFinishLaunching() {
+bool App::applicationDidFinishLaunching() {
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
@@ -27,7 +27,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
         glview->setFrameSize(ScreenResolution.width, ScreenResolution.height);
         director->setOpenGLView(glview);
     }
-    glview->setDesignResolutionSize(ScreenResolution.width, ScreenResolution.height, kResolutionShowAll);
+    glview->setDesignResolutionSize(ScreenResolution.width, ScreenResolution.height, ResolutionPolicy::SHOW_ALL);
     director->setDisplayStats(true);
     director->setAnimationInterval(1.0 / 60);
     auto scene = ChoiceScene::createScene();
@@ -35,10 +35,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
     return true;
 }
 
-void AppDelegate::applicationDidEnterBackground() {
+void App::applicationDidEnterBackground() {
     Director::getInstance()->stopAnimation();
 }
 
-void AppDelegate::applicationWillEnterForeground() {
+void App::applicationWillEnterForeground() {
     Director::getInstance()->startAnimation();
 }
