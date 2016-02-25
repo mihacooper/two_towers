@@ -31,7 +31,7 @@ bool ChoiceScene::init()
     TopShift = Director::getInstance()->getVisibleOrigin().y + Director::getInstance()->getVisibleSize().height - 150;
     LeftShift = Director::getInstance()->getVisibleOrigin().x + 150;
 
-    auto label = Label::createWithTTF("Select buildings", "fonts/Marker Felt.ttf", 32);
+    auto label = Label::createWithTTF("Select buildings", "fonts/Furgatorio.ttf", 80);
     label->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2,
                             (TopShift + Director::getInstance()->getVisibleSize().height) / 2 + label->getHeight() / 2));
     this->addChild(label, 1);
