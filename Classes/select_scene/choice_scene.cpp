@@ -55,19 +55,26 @@ bool ChoiceScene::init()
 
 void ChoiceScene::NextSceneButton(Ref* pSender)
 {
-    if(IsSelectionFull())
+    if(true || IsSelectionFull())
     {
-        if(GameState.fp_buildings.size() == 0U)
+        if(GameState.first_player.buildings.size() == 1U)
         {
-            GameState.fp_buildings = helpers::CopyBuildings(m_selectedObjects);
+            auto toAdd = {AllBuildings[1],AllBuildings[1],AllBuildings[1],AllBuildings[1],AllBuildings[1],AllBuildings[1]};//helpers::CopyBuildings(m_selectedObjects);
+            GameState.first_player.buildings.insert(GameState.first_player.buildings.end(), toAdd.begin(), toAdd.end());
             auto scene = ChoiceScene::createScene();
             Director::getInstance()->replaceScene(scene);
         }
         else
         {
-            GameState.sp_buildings = helpers::CopyBuildings(m_selectedObjects);
-            auto scene = GameScene::createScene();
-            Director::getInstance()->replaceScene(scene);
+            auto toAdd = {AllBuildings[1],AllBuildings[1],AllBuildings[1],AllBuildings[1],AllBuildings[1],AllBuildings[1]};//helpers::CopyBuildings(m_selectedObjects);
+            GameState.second_player.buildings.insert(GameState.second_player.buildings.end(), toAdd.begin(), toAdd.end());
+            auto fpBaseScene = GameScene::createScene();
+            auto spBaseScene = GameScene::createScene();
+            auto fpScene = dynamic_cast<GameScene*>(fpBaseScene->getChildByTag(0));
+            auto spScene = dynamic_cast<GameScene*>(spBaseScene->getChildByTag(0));
+            fpScene->Init(spBaseScene, &GameState.first_player, &GameState.second_player);
+            spScene->Init(fpBaseScene, &GameState.second_player, &GameState.first_player);
+            Director::getInstance()->replaceScene(fpBaseScene);
         }
     }
 }

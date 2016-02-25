@@ -4,23 +4,110 @@ cocos2d::Size ScreenResolution(768, 1024);
 
 std::vector<UnitConfig> AllUnits =
 {
-    UnitConfig{"building.png"},
+    UnitConfig
+    {
+        "SampleUnit",
+        "unit.png",
+    },
+};
+
+const BuildingConfig SampleBuilding =
+{
+    // name
+    "SampleBuilding",
+    // image
+    "building.png",
+    // help
+    "Help message",
+    // level
+    0,
+    // each level config
+    {
+        {
+            // image
+            "building.png",
+            // help
+            "Help message",
+            // objects
+            {
+                "SampleUnit",
+                "SampleUnit",
+            },
+        },
+        {
+            // image
+            "building.png",
+            // help
+            "Help message",
+            // objects
+            {
+                "SampleUnit",
+            },
+        },
+        {
+            // image
+            "building.png",
+            // help
+            "Help message",
+            // objects
+            {
+                "SampleUnit",
+            },
+        },
+    }
 };
 
 std::vector<BuildingConfig> AllBuildings =
 {
-    BuildingConfig{"building.png", "", ""},
-    BuildingConfig{"building.png", "", ""},
-    BuildingConfig{"building.png", "", ""},
-    BuildingConfig{"building.png", "", ""},
-    BuildingConfig{"building.png", "", ""},
-    BuildingConfig{"building.png", "", ""},
-    BuildingConfig{"building.png", "", ""},
-    BuildingConfig{"building.png", "", ""},
-    BuildingConfig{"building.png", "", ""},
-    BuildingConfig{"building.png", "", ""},
-    BuildingConfig{"building.png", "", ""},
-    BuildingConfig{"building.png", "", ""},
+    // default building
+    {
+        // name
+        "SampleBuilding",
+        // image
+        "building.png",
+        // help
+        "Help message",
+        // level
+        0,
+        // each level config
+        {
+            {
+                // image
+                "building.png",
+                // help
+                "Help message",
+                // objects
+                {},
+            },
+            {
+                // image
+                "building.png",
+                // help
+                "Help message",
+                // objects
+                {},
+            },
+            {
+                // image
+                "building.png",
+                // help
+                "Help message",
+                // objects
+                {},
+            },
+        }
+    },
+    SampleBuilding,
+    SampleBuilding,
+    SampleBuilding,
+    SampleBuilding,
+    SampleBuilding,
+    SampleBuilding,
+    SampleBuilding,
+    SampleBuilding,
+    SampleBuilding,
+    SampleBuilding,
+    SampleBuilding,
 };
 
 _SystemConfig SystemConfig =
@@ -53,23 +140,41 @@ _SystemConfig SystemConfig =
     },
     // vector<Vec2> bfld_buildings =
     {
-        {300, 100}, {200, 210}, {250, 320},
-        {468, 100}, {568, 210}, {518, 320},
+        {384, 50},
+        {250, 100}, {200, 210}, {250, 320},
+        {518, 100}, {568, 210}, {518, 320},
     },
+    // Rect bfld_choice_area =
+    { 284, 824, 484, 1024 },
 };
 
-_GameConfig GameConfig = {20U};
+_GameConfig GameConfig =
+{
+    // unsigned int initial_tower_life =
+    20U,
+    // unsigned int initial_wall_life =
+    20U,
+};
 
 _GameState GameState =
 {
-    // vector<Sprite*> fp_buildings =
-    {},
-    // unsigned int fp_tower =
-    GameConfig.tower_life,
-
-    // vector<Sprite*> sp_buildings =
-    {},
-    // unsigned int sp_tower =
-    GameConfig.tower_life,
+    // PlayerConfig first_player =
+    {
+        //unsigned int tower_life =
+        GameConfig.initial_tower_life,
+        //unsigned int wall_life =
+        GameConfig.initial_wall_life,
+        // vector<BuildingConfig> buildings =
+        { AllBuildings[0] },
+    },
+    //PlayerConfig second_player;
+    {
+        //unsigned int tower_life =
+        GameConfig.initial_tower_life,
+        //unsigned int wall_life =
+        GameConfig.initial_wall_life,
+        // vector<BuildingConfig> buildings =
+        { AllBuildings[0] },
+    },
 };
 

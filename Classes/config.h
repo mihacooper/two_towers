@@ -8,14 +8,24 @@
 
 struct UnitConfig
 {
+    std::string name;
     std::string image;
 };
 
 struct BuildingConfig
 {
-    std::string image;
+    struct BuildingState
+    {
+        std::string image;
+        std::string help;
+        std::vector<std::string> objects;
+    };
+
     std::string name;
+    std::string image;
     std::string help;
+    unsigned int level;
+    std::vector<BuildingState> states;
 };
 
 struct _SystemConfig
@@ -29,20 +39,26 @@ struct _SystemConfig
     // game scene
     std::vector<cocos2d::Vec2> bfld_units;
     std::vector<cocos2d::Vec2> bfld_buildings;
+    cocos2d::Rect bfld_choice_area;
+};
+
+struct PlayerConfig
+{
+    unsigned int tower_life;
+    unsigned int wall_life;
+    std::vector<BuildingConfig> buildings;
 };
 
 struct _GameConfig
 {
-    unsigned int tower_life;
+    unsigned int initial_tower_life;
+    unsigned int initial_wall_life;
 };
 
 struct _GameState
 {
-    std::vector<BuildingConfig> fp_buildings;
-    unsigned int fp_tower;
-
-    std::vector<BuildingConfig> sp_buildings;
-    unsigned int sp_tower;
+    PlayerConfig first_player;
+    PlayerConfig second_player;
 };
 
 extern cocos2d::Size ScreenResolution;
