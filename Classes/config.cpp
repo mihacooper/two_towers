@@ -21,38 +21,25 @@ const BuildingConfig SampleBuilding =
     "Help message",
     // level
     0,
+    // objects
+    {
+        "SampleUnit",
+        "SampleUnit",
+    },
     // each level config
     {
+        // buildings
         {
-            // image
-            "building.png",
-            // help
-            "Help message",
-            // objects
-            {
-                "SampleUnit",
-                "SampleUnit",
-            },
+            "SampleBuilding",
+            "SampleBuilding",
         },
         {
-            // image
-            "building.png",
-            // help
-            "Help message",
-            // objects
-            {
-                "SampleUnit",
-            },
+            "SampleBuilding",
+            "SampleBuilding",
         },
         {
-            // image
-            "building.png",
-            // help
-            "Help message",
-            // objects
-            {
-                "SampleUnit",
-            },
+            "SampleBuilding",
+            "SampleBuilding",
         },
     }
 };
@@ -70,30 +57,16 @@ std::vector<BuildingConfig> AllBuildings =
         // level
         0,
         // each level config
+        {},
         {
             {
-                // image
-                "building.png",
-                // help
-                "Help message",
-                // objects
-                {},
+                "SampleBuilding",
             },
             {
-                // image
-                "building.png",
-                // help
-                "Help message",
-                // objects
-                {},
+                "SampleBuilding",
             },
             {
-                // image
-                "building.png",
-                // help
-                "Help message",
-                // objects
-                {},
+                "SampleBuilding",
             },
         }
     },

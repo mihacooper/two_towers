@@ -33,7 +33,7 @@ void GameScene::ReloadUnits()
     std::vector<UnitConfig> unitConfigs;
     for(auto build : m_playerConfig->buildings)
     {
-        for(auto unitName : build.states[build.level].objects)
+        for(auto unitName : build.objects)
         {
             auto unit = FindUnit(unitName);
             if(unit == nullptr)
@@ -86,7 +86,7 @@ bool GameScene::Init(cocos2d::Scene* anotherPlayerScene, PlayerConfig* playerCon
     auto menu = Menu::create(closeItem, NULL);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
-    auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
+    auto label = Label::createWithTTF("Hello World", "fonts/Furgatorio.ttf", 24);
     label->setPosition(Vec2(origin.x + visibleSize.width/2, origin.y + visibleSize.height - label->getContentSize().height));
     this->addChild(label, 1);
     ReloadBuildings();
@@ -110,7 +110,7 @@ bool GameScene::OnTouchBegan(Touch* touch, Event* event)
     if (rect.containsPoint(locationInNode))
     {
         auto res = std::find(m_units.begin(), m_units.end(), target);
-        if(res != m_units.end()) *res = nullptr;
+        //if(res != m_units.end()) *res = nullptr;
         return true;
     }
     return false;
@@ -133,11 +133,10 @@ void GameScene::OnTouchEnded(Touch* touch, Event* event)
     }
     else
     {
-        auto firstEmpty = std::find(m_units.begin(), m_units.end(), nullptr);
-        if(firstEmpty != m_units.end())
+        auto found = std::find(m_units.begin(), m_units.end(), obj);
+        if(found != m_units.end())
         {
-            *firstEmpty = obj;
-            helpers::MoveTo(obj, SystemConfig.bfld_units[firstEmpty - m_units.begin()]);
+            helpers::MoveTo(obj, SystemConfig.bfld_units[found - m_units.begin()]);
         }
     }
 }

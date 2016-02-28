@@ -42,6 +42,10 @@ bool ChoiceScene::init()
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
 
+    auto background = Sprite::create("background.png");
+    background->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height / 2));
+    this->addChild(background, 0);
+
     for(unsigned int i = 0; i < AllBuildings.size(); i++)
     {
         auto build = helpers::CreateObject<ChoiceScene, BuildingConfig>(AllBuildings[i].image, this, AllBuildings[i]);

@@ -14,18 +14,12 @@ struct UnitConfig
 
 struct BuildingConfig
 {
-    struct BuildingState
-    {
-        std::string image;
-        std::string help;
-        std::vector<std::string> objects;
-    };
-
     std::string name;
     std::string image;
     std::string help;
     unsigned int level;
-    std::vector<BuildingState> states;
+    std::vector<std::string> objects;
+    std::vector<std::vector<std::string>> states;
 };
 
 struct _SystemConfig
